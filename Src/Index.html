@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avalúos Finisterra | Servicios de valuación en BCS</title>
+  <meta name="description" content="Avalúos confiables y oportunos: inmobiliarios, maquinaria y equipo, autos clásicos, y valuación de empresas en Baja California Sur.">
+  <!-- Fuente inspirada en tasvaluo.com (se puede cambiar si especifican otra) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Css/Style.css">
+</head>
+<body>
+  <header class="site">
+    <div class="container nav">
+      <a class="brand" href="#inicio" aria-label="Inicio">
+        <!-- Reemplazar por el mismo logotipo de finisterralaw.com -->
+        <img src="../Img/logo-Finisterra.png" alt="Avalúos Finisterra - Logotipo" onerror="this.style.display='none'">
+        <div>
+          <strong>Avalúos Finisterra</strong>
+          <div class="tag">Unidad de Valuación</div>
+        </div>
+      </a>
+      <nav aria-label="Navegación principal">
+        <ul>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#acerca">Acerca de</a></li>
+          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container content">
+        <div>
+          <div class="kicker">Avalúos confiables y oportunos</div>
+          <h1>Valuación inmobiliaria, de activos y empresas en Baja California Sur</h1>
+          <p class="lead">Reportes claros, metodología profesional y tiempos de entrega eficientes para respaldar decisiones financieras y legales.</p>
+          <div class="badges">
+            <span class="badge">Inmobiliario</span>
+            <span class="badge">Maquinaria y equipo</span>
+            <span class="badge">Autos clásicos</span>
+            <span class="badge">Empresas / intangibles</span>
+          </div>
+          <div style="margin-top:1.25rem; display:flex; gap:.8rem">
+            <a class="btn btn-primary" href="#contacto">Solicitar cotización</a>
+            <a class="btn btn-outline" href="#servicios">Ver servicios</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="margin:0 0 .7rem">Contacto inmediato</h3>
+          <p class="notice">Tel / WhatsApp: <strong>624 225 97 93</strong><br>Horario: <strong>9:00–14:00 y 17:00–19:00</strong></p>
+          <form action="#" method="post" aria-label="Formulario de contacto">
+            <div class="row">
+              <div>
+                <label for="nombre">Nombre*</label>
+                <input id="nombre" name="nombre" required placeholder="Tu nombre completo">
+              </div>
+              <div>
+                <label for="telefono">Teléfono / WhatsApp*</label>
+                <input id="telefono" name="telefono" required placeholder="10 dígitos">
+              </div>
+            </div>
+            <div class="row">
+              <div>
+                <label for="correo">Correo</label>
+                <input id="correo" name="correo" type="email" placeholder="info@avaluosfinisterra.com">
+              </div>
+              <div>
+                <label for="tipo">Tipo de avalúo*</label>
+                <select id="tipo" name="tipo" required>
+                  <option value="" selected disabled>Selecciona una opción</option>
+                  <option>Inmobiliario (casa/terreno/comercial)</option>
+                  <option>Maquinaria y equipo</option>
+                  <option>Autos clásicos / colección</option>
+                  <option>Empresas / intangibles</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label for="detalles">Detalles</label>
+              <textarea id="detalles" name="detalles" placeholder="Ubicación, propósito del avalúo, plazos, etc."></textarea>
+              <div class="hint">*Formato base sencillo. El envío puede integrarse vía PHP/Email o a CRM.</div>
+            </div>
+            <button class="btn btn-primary" type="submit">Enviar solicitud</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios">
+      <div class="container">
+        <h2>Servicios de Avalúo</h2>
+        <div class="grid-3">
+          <article class="card">
+            <span class="chip">Autos clásicos</span>
+            <h3>Avalúos de autos clásicos o de colección</h3>
+            <p>Proteja su inversión con una evaluación profesional para colecciones y unidades especiales. Reportes orientados a mercado justo y costo de reemplazo.</p>
+          </article>
+          <article class="card">
+            <span class="chip">Maquinaria y equipo</span>
+            <h3>Maquinaria y equipo</h3>
+            <p>Valoración por industria considerando depreciación física, tecnológica, funcional y económica, entre otros factores.</p>
+          </article>
+          <article class="card">
+            <span class="chip">Inmobiliario</span>
+            <h3>Propiedades y bienes raíces</h3>
+            <p>Informes claros e independientes con análisis de la propiedad y del mercado donde se ubica (residencial, industrial y comercial).</p>
+          </article>
+        </div>
+        <div class="grid-2" style="margin-top:1rem">
+          <article class="card">
+            <span class="chip">Empresas / Intangibles</span>
+            <h3>Valuación de empresas (tangibles e intangibles)</h3>
+            <p>Soporte integral en valuación de negocios completos, acciones y activos intangibles, conforme a estándares reconocidos.</p>
+          </article>
+          <article class="card">
+            <span class="chip">Asesoría</span>
+            <h3>Consultoría y dictámenes</h3>
+            <p>Orientación sobre el tipo de valuación, alcance y documentación requerida para cada propósito (banca, fiscal, seguros, litigio, compra/venta).</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACERCA DE -->
+    <section id="acerca" style="background:var(--neutral-100)">
+      <div class="container grid-2">
+        <div>
+          <h2>Acerca de Avalúos Finisterra</h2>
+          <p>Nuestro compromiso es brindar servicios confiables que respalden decisiones financieras con el mejor soporte técnico y en el menor tiempo posible. Contamos con metodologías y análisis avanzados para atender distintos tipos de valoración.</p>
+          <ul style="margin:.6rem 0 0; padding-left:1rem; color:var(--neutral-700)">
+            <li>Experiencia local en Baja California Sur.</li>
+            <li>Reportes claros y trazables.</li>
+            <li>Atención personalizada y ética profesional.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">Garantía de entrega</h3>
+          <p style="margin:0">Tiempos de respuesta eficientes y comunicación continua durante todo el proceso.</p>
+          <div class="badges"><span class="badge">Confidencialidad</span><span class="badge">Rigurosidad</span><span class="badge">Transparencia</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESO / CTA -->
+    <section id="proceso">
+      <div class="container">
+        <h2>Proceso de trabajo</h2>
+        <div class="grid-3">
+          <div class="card"><h3>1) Alcance</h3><p>Definimos el propósito del avalúo y la documentación.</p></div>
+          <div class="card"><h3>2) Inspección</h3><p>Visita y levantamiento de datos técnicos.</p></div>
+          <div class="card"><h3>3) Análisis</h3><p>Metodologías comparativas, costo y/o ingresos según corresponda.</p></div>
+          <div class="card"><h3>4) Reporte</h3><p>Informe con conclusiones y anexos de soporte.</p></div>
+          <div class="card"><h3>5) Entrega</h3><p>Versión digital (PDF) y, si se requiere, impresión.</p></div>
+          <div class="card"><h3>6) Seguimiento</h3><p>Aclaraciones y actualizaciones bajo solicitud.</p></div>
+        </div>
+        <div style="display:flex; gap:.8rem; margin-top:1rem">
+          <a class="btn btn-primary" href="#contacto">Quiero una cotización</a>
+          <a class="btn btn-outline" href="#servicios">Explorar servicios</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" style="background:linear-gradient(180deg, transparent, rgba(11,34,57,.04))">
+      <div class="container grid-2">
+        <div>
+          <h2>Contacto</h2>
+          <p class="notice">Tel / WhatsApp: <strong>624 225 97 93</strong><br>
+          Correo: <strong>info@avaluosfinisterra.com</strong><br>
+          Horario: <strong>9:00–14:00 y 17:00–19:00</strong></p>
+          <p class="hint">No manejamos redes sociales por ahora. No se incluye mapa.</p>
+        </div>
+        <div class="card">
+          <form action="#" method="post">
+            <div class="row">
+              <div>
+                <label for="c-nombre">Nombre*</label>
+                <input id="c-nombre" name="nombre" required>
+              </div>
+              <div>
+                <label for="c-telefono">Teléfono/WhatsApp*</label>
+                <input id="c-telefono" name="telefono" required>
+              </div>
+            </div>
+            <div>
+              <label for="c-mensaje">Mensaje</label>
+              <textarea id="c-mensaje" name="mensaje" placeholder="Cuéntanos qué necesitas valuar"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Enviar</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footgrid">
+      <div>
+        <strong>Avalúos Finisterra</strong><br>
+        <span class="notice">Unidad de Valuación<br>San José del Cabo, BCS</span>
+      </div>
+      <div class="notice" style="text-align:right">
+        © <span id="y"></span> Avalúos Finisterra · Sitio desarrollado por Banana Group
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
