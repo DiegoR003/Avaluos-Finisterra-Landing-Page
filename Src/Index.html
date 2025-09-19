@@ -6,7 +6,7 @@
   <title>Avalúos Finisterra | Servicios de valuación en BCS</title>
   <meta name="description" content="Avalúos confiables y oportunos: inmobiliarios, maquinaria y equipo, autos clásicos y valuación de empresas en Baja California Sur.">
 
-  <!-- Tipografía corporativa limpia -->
+  <!-- Tipografía -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -18,7 +18,6 @@
   <header class="site">
     <div class="container nav">
       <a class="brand" href="#inicio" aria-label="Inicio">
-        <!-- LOGOTIPO: mismo que Finisterra Law -->
         <img src="../Img/logo-Finisterra.png" alt="Avalúos Finisterra - Logotipo">
         <div class="brand-text">
           <strong>Avalúos Finisterra</strong>
@@ -26,7 +25,7 @@
         </div>
       </a>
       <nav aria-label="Navegación principal">
-        <button class="nav-toggle" aria-label="Abrir menú">☰</button>
+        <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
         <ul>
           <li><a href="#servicios">Servicios</a></li>
           <li><a href="#acerca">Acerca</a></li>
@@ -38,17 +37,17 @@
   </header>
 
   <main id="inicio">
-    <!-- HERO con carrusel de FONDO -->
-    <section class="hero hero-has-bg">
-      <!-- Slides de fondo (imágenes y/o videos) -->
+    <!-- HERO (centrado) con carrusel de FONDO por FADE -->
+    <section class="hero hero-has-bg hero-centered">
+      <!-- Slides de fondo (puedes mezclar imágenes y/o video) -->
       <div class="bg-slides" aria-hidden="true">
-        <!-- Sustituye por tus archivos -->
-        <img src="../Img/Vista_Arco.jpg" alt="" class="bg-item">
-        <img src="Img/hero-2.jpg" alt="" class="bg-item">
-        <video class="bg-item" autoplay muted loop playsinline>
+        <img src="../Img/Vista_Arco.jpg" alt="Arco los cabos" class="bg-item active">
+        <img src="../Img/Ballena_Cabos.jpg" alt="Ballena en Los Cabos" class="bg-item">
+        <video class="bg-item" muted playsinline>
           <source src="Videos/hero-3.mp4" type="video/mp4">
         </video>
       </div>
+      <!-- Overlay para contraste -->
       <div class="hero-overlay" aria-hidden="true"></div>
 
       <div class="container content">
@@ -66,41 +65,10 @@
 
           <div class="cta">
             <a class="btn btn-primary" href="#contacto">Solicitar cotización</a>
-            <a class="btn btn-outline" href="#servicios">Ver servicios</a>
+            <a class="btn btn-outline-light" href="#servicios">Ver servicios</a>
           </div>
         </div>
-
-        <!-- Card de contacto rápido 
-        <aside class="card">
-          <h3>Contacto inmediato</h3>
-          <p class="notice">Tel / WhatsApp: <strong>624 225 97 93</strong><br>Horario: <strong>9:00–14:00 y 17:00–19:00</strong></p>
-          <form id="leadForm" aria-label="Formulario de contacto">
-            <div class="row">
-              <label>Nombre*<input name="nombre" required placeholder="Tu nombre completo"></label>
-              <label>Teléfono / WhatsApp*<input name="telefono" required placeholder="10 dígitos"></label>
-            </div>
-            <div class="row">
-              <label>Correo<input type="email" name="correo" placeholder="info@avaluosfinisterra.com"></label>
-              <label>Tipo de avalúo*
-                <select name="tipo" required>
-                  <option value="" selected disabled>Selecciona una opción</option>
-                  <option>Inmobiliario (casa/terreno/comercial)</option>
-                  <option>Maquinaria y equipo</option>
-                  <option>Autos clásicos / colección</option>
-                  <option>Empresas / intangibles</option>
-                  <option>Otro</option>
-                </select>
-              </label>
-            </div>
-            <label>Detalles
-              <textarea name="detalles" placeholder="Ubicación, propósito del avalúo, plazos, etc."></textarea>
-            </label>
-            <p class="hint">*Formato base sencillo. Envío por email/SMTP o integración a CRM.</p>
-            <button class="btn btn-primary" type="submit">Enviar solicitud</button>
-            <p class="form-msg" role="status" aria-live="polite"></p>
-          </form>
-        </aside>
-      </div> -->
+      </div>
 
       <!-- Controles del carrusel de fondo -->
       <div class="bg-controls">

@@ -1,19 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Año en footer
+  // Año en footer (si agregas un span#y en el footer)
   const y = document.getElementById('y');
   if (y) y.textContent = new Date().getFullYear();
 
-  // Menú móvil
+  // ===== Menú móvil (dropdown) =====
+  const headerEl = document.querySelector('header.site');
   const navToggle = document.querySelector('.nav-toggle');
-  const navUl = document.querySelector('nav ul');
-  if (navToggle && navUl) {
+  if (headerEl && navToggle) {
+    navToggle.setAttribute('aria-expanded', 'false');
     navToggle.addEventListener('click', () => {
-      const visible = getComputedStyle(navUl).display !== 'none';
-      navUl.style.display = visible ? 'none' : 'flex';
+      const isOpen = headerEl.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    // cerrar si haces click fuera
+    document.addEventListener('click', (e)=>{
+      if (!headerEl.contains(e.target) && headerEl.classList.contains('open')) {
+        headerEl.classList.remove('open');
+        navToggle.setAttribute('aria-expanded','false');
+      }
     });
   }
 
-  // Formularios (placeholder sin backend)
+  // ===== Formularios (placeholder sin backend) =====
   ['leadForm','contactForm'].forEach(id=>{
     const form = document.getElementById(id);
     if(!form) return;
@@ -26,48 +34,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ===== Carrusel de FONDO (imágenes o videos) =====
-  const bgWrap = document.querySelector('.bg-slides');
-  if (bgWrap) {
-    const items = Array.from(bgWrap.querySelectorAll('.bg-item'));
+  // ===== Carrusel de FONDO (FADE) =====
+  const slidesWrap = document.querySelector('.bg-slides');
+  if (slidesWrap) {
+    const items = Array.from(slidesWrap.querySelectorAll('.bg-item'));
     const dotsWrap = document.querySelector('.bg-dots');
     const prev = document.querySelector('.bg-prev');
     const next = document.querySelector('.bg-next');
 
-    // ancho según número de slides
-    bgWrap.style.width = `${items.length * 100}%`;
-    items.forEach(el => el.style.flex = '0 0 100%');
-
-    // dots
-    items.forEach((_,i)=>{
+    // Crear dots
+    items.forEach((_, i) => {
       const b = document.createElement('button');
-      if(i===0) b.classList.add('active');
-      b.addEventListener('click', ()=>go(i, true));
+      if (i === 0) b.classList.add('active');
+      b.addEventListener('click', () => show(i, true));
       dotsWrap.appendChild(b);
     });
 
     let idx = 0, timer;
-    function update(){
-      bgWrap.style.transform = `translateX(-${idx*100}%)`;
-      dotsWrap.querySelectorAll('button').forEach((d,i)=>d.classList.toggle('active', i===idx));
-      // reproducir/pausar videos según visibilidad
-      items.forEach((el,i)=>{
-        if(el.tagName === 'VIDEO'){ i===idx ? el.play().catch(()=>{}) : el.pause(); }
-      });
-    }
-    function go(i, stop){
+    function show(i, stopAuto=false){
       idx = (i + items.length) % items.length;
-      update();
-      if(stop) resetAuto();
+      items.forEach((el, k) => {
+        el.classList.toggle('active', k === idx);
+        // Control de video: play solo en el activo
+        if (el.tagName === 'VIDEO') {
+          if (k === idx) { el.play().catch(()=>{}); }
+          else { el.pause(); el.currentTime = 0; }
+        }
+      });
+      // actualiza dots
+      dotsWrap.querySelectorAll('button').forEach((d, k) => d.classList.toggle('active', k === idx));
+      if (stopAuto) resetAuto();
     }
-    function nextSlide(){ go(idx+1); }
-    function prevSlide(){ go(idx-1); }
-    function resetAuto(){ clearInterval(timer); timer = setInterval(nextSlide, 5500); }
 
-    next.addEventListener('click', ()=>go(idx+1, true));
-    prev.addEventListener('click', ()=>go(idx-1, true));
+    function nextSlide(){ show(idx + 1); }
+    function prevSlide(){ show(idx - 1); }
+    function resetAuto(){ clearInterval(timer); timer = setInterval(nextSlide, 6000); }
 
-    update();
+    next.addEventListener('click', () => show(idx + 1, true));
+    prev.addEventListener('click', () => show(idx - 1, true));
+
+    // iniciar
+    show(0);
     resetAuto();
   }
 });
