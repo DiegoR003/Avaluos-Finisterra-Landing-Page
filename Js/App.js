@@ -118,3 +118,60 @@ document.addEventListener('DOMContentLoaded', () => {
     resetAuto();
   }
 });
+
+
+// ========== SCROLL SUAVE EN ANCLAS ==========
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a) return;
+  const id = a.getAttribute('href');
+  if (id && id.length > 1) {
+    const el = document.querySelector(id);
+    if (el) {
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+});
+
+
+// ========== NAVBAR AUTO-HIDE SOLO APARECE EN EL TOP ==========
+document.addEventListener('DOMContentLoaded', () => {
+  const nav = document.getElementById('siteNav');
+  if (!nav) return;
+
+  const TOP_VISIBLE = 120;
+  let ticking = false;
+
+  const applyState = () => {
+    const y = window.scrollY || 0;
+
+    // Si el menú móvil está abierto, no ocultes el header
+    if (nav.classList.contains('open')) {
+      nav.classList.add('nav-solid');
+      nav.classList.remove('nav-hidden');
+      return;
+    }
+
+    // Sólido al mínimo scroll
+    nav.classList.toggle('nav-solid', y > 8);
+
+    // Oculto si pasas el umbral; visible cerca del top
+    nav.classList.toggle('nav-hidden', y > TOP_VISIBLE);
+  };
+
+  const onScroll = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        applyState();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  applyState(); // estado inicial
+});
+
+

@@ -19,6 +19,14 @@
   --bg-fit: cover;
 }
 
+
+nav ul li a {
+  display: inline-flex;
+  align-items: center;  /* centra verticalmente */
+  padding: .5rem 1rem;  /* igual que el resto */
+  line-height: 1;       /* asegura misma altura */
+}
+
 /* ===== Reset ===== */
 *{box-sizing:border-box}
 html,body{
@@ -32,11 +40,26 @@ img{max-width:100%; display:block}
 .container{width:min(1120px,92%); margin-inline:auto}
 
 /* ===== Header/Nav ===== */
-header.site{
-  position:sticky; top:0; z-index:50;
-  background:var(--brand-1);
-  box-shadow:0 2px 0 rgba(0,0,0,.04);
+header.site {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--brand-1);   /* sólido */
+  transition: transform .28s ease, background-color .25s ease, box-shadow .25s ease;
 }
+
+/* Más sólido / con sombra al hacer scroll */
+header.site.nav-solid {
+  background: rgba(11,34,57,1);  /* sigue sólido, pero puedes darle un leve efecto */
+  box-shadow: 0 6px 24px rgba(0,0,0,.12);
+}
+
+/* Oculto cuando pasas el umbral */
+header.site.nav-hidden {
+  transform: translateY(-100%);
+}
+
+
 .nav{display:flex; align-items:center; justify-content:space-between; padding:.7rem 0; position:relative}
 .brand{display:flex; align-items:center; gap:.75rem; color:#fff}
 .brand img{height:72px; width:auto}      /* LOGO grande */
@@ -65,6 +88,7 @@ nav a.btn{display:inline-flex; align-items:center}
 .btn-secondary{background:var(--brand-2); color: #000;; border:1px solid var(--brand-2)}
 .btn-secondary:hover{filter:brightness(1.07)}
 a.btn-outline-light:hover { background: #C2A46D;}
+
 
 /* ===== HERO con FONDO (FADE) ===== */
 .hero{position:relative; padding:5rem 0 3.2rem}
@@ -273,3 +297,32 @@ textarea{min-height:130px}
   .service-grid{grid-template-columns:1fr; gap:1rem}
   .service-card{min-height:260px}
 }
+
+
+/* Historia - foto con pie y KPIs */
+.photo-card{
+  margin:0; border-radius:var(--radius-xl); overflow:hidden;
+  box-shadow:var(--shadow-1); background:#fff; border:1px solid var(--line)
+}
+.photo-card img{ height:100%; width: 50%;; object-fit:contain; display: block; max-height:360px}
+.photo-card figcaption{padding:.8rem 1rem; font-size:.95rem; color:#475569; background:#fff}
+
+.kpis{display:flex; gap:1.2rem; list-style:none; padding:0; margin:1rem 0 0}
+.kpis li{display:flex; flex-direction:column; align-items:flex-start; gap:.2rem}
+.kpis strong{font-size:1.4rem; color:var(--brand-1)}
+.kpis span{font-size:.9rem; color:#64748b}
+.photo-grid {
+  display: flex;
+}
+.photo-grid img {
+  flex: 1;                /* ambas ocupan 50% */
+  height: 100%;
+  object-fit: contain;      /* recorta pero llena */
+}
+
+@media (max-width:960px){
+  .photo-card img{max-height:280px}
+  .kpis{flex-wrap:wrap}
+}
+
+
