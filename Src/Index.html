@@ -27,9 +27,10 @@
       <nav aria-label="Navegación principal">
         <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
         <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#historia">Historia</a></li>
           <li><a href="#servicios">Servicios</a></li>
           <li><a href="#acerca">Acerca</a></li>
-          <li><a href="#proceso">Proceso</a></li>
           <li><a class="btn btn-small btn-secondary" href="#contacto">Contacto</a></li>
         </ul>
       </nav>
@@ -43,9 +44,10 @@
       <div class="bg-slides" aria-hidden="true">
         <img src="../Img/Vista_Arco.jpg" alt="Arco los cabos" class="bg-item active">
         <img src="../Img/Ballena_Cabos.jpg" alt="Ballena en Los Cabos" class="bg-item">
-        <video class="bg-item" muted playsinline>
+        <img src="" alt="n Los Cabos" class="bg-item">
+       <!-- <video class="bg-item" muted playsinline>
           <source src="Videos/hero-3.mp4" type="video/mp4">
-        </video>
+        </video> -->
       </div>
       <!-- Overlay para contraste -->
       <div class="hero-overlay" aria-hidden="true"></div>
@@ -78,53 +80,116 @@
       </div>
     </section>
 
-    <!-- SERVICIOS -->
-    <section id="servicios">
-      <div class="container">
-        <h2>Servicios de Avalúo</h2>
-
-        <div class="grid-3">
-          <article class="card">
-            <span class="chip">Autos clásicos</span>
-            <h3>Avalúos de autos clásicos o de colección</h3>
-            <p>Proteja su inversión con una evaluación profesional. Realizamos estimaciones orientadas a mercado justo y costo de reemplazo.</p>
-          </article>
-
-          <article class="card">
-            <span class="chip">Maquinaria y equipo</span>
-            <h3>Maquinaria y equipo</h3>
-            <p>Valoración por industria considerando depreciación física, tecnológica, funcional y económica, entre otros factores.</p>
-          </article>
-
-          <article class="card">
-            <span class="chip">Inmobiliario</span>
-            <h3>Propiedades y bienes raíces</h3>
-            <p>Informes claros e independientes con análisis de la propiedad y del mercado donde se ubica (residencial, industrial y comercial).</p>
-          </article>
+ <!-- Historia -->
+    <section id="historia" class="alt">
+      <div class="container grid-2">
+        <div>
+          <h2>Historia</h2>
+          <p>Somos una firma de abogados con más de doce años de presencia en el Estado de Baja California Sur proporcionando servicios legales de alta calidad tanto a personas físicas, como a comerciantes y empresarios, nacionales o extranjeros, a través servicios personalizados proporcionados por abogados especializados con amplia experiencia en las áreas de práctica, solucionamos con éxito para nuestros clientes los que asuntos que son solicitados.</p>
+         <!-- <ul class="bullets">
+            <li>Experiencia local en Baja California Sur.</li>
+            <li>Reportes claros y trazables.</li>
+            <li>Atención personalizada y ética profesional.</li>
+          </ul> -->
         </div>
 
-        <div class="grid-2 mt">
-          <article class="card">
-            <span class="chip">Empresas / Intangibles</span>
-            <h3>Valuación de empresas (tangibles e intangibles)</h3>
-            <p>Soporte integral para valorar negocios, acciones y activos intangibles con metodologías reconocidas.</p>
-          </article>
-
-          <article class="card">
-            <span class="chip">Asesoría</span>
-            <h3>Consultoría y dictámenes</h3>
-            <p>Definición de alcance, propósito y documentación (banca, fiscal, seguros, litigio, compra/venta).</p>
-          </article>
+        <div class="card">
+          <h3>Garantía de entrega</h3>
+          <p>Tiempos de respuesta eficientes y comunicación continua durante todo el proceso.</p>
+          <div class="badges">
+            <span class="badge">Confidencialidad</span>
+            <span class="badge">Rigurosidad</span>
+            <span class="badge">Transparencia</span>
+          </div>
         </div>
       </div>
     </section>
+
+
+
+   <!-- SERVICIOS (con imagen + overlay de info) -->
+<section id="servicios">
+  <div class="container">
+    <h2>Servicios de Avalúo</h2>
+
+    <div class="service-grid">
+
+      <!-- AUTOS CLÁSICOS -->
+      <article class="service-card" style="--bg-img: url('../Img/Auto_Clasico2.jpg')">
+        <button class="service-face" aria-expanded="false">
+          <span class="service-title">Autos clásicos</span>
+        </button>
+        <div class="service-info">
+          <span class="chip">Autos clásicos</span>
+          <h3>Avalúos de autos clásicos o de colección</h3>
+          <p>Proteja su inversión con una evaluación profesional. Realizamos estimaciones orientadas a mercado justo y costo de reemplazo.</p>
+          <a class="btn btn-outline-light btn-small" href="#contacto">Solicitar cotización</a>
+        </div>
+      </article>
+
+      <!-- MAQUINARIA -->
+      <article class="service-card" style="--bg-img: url('../Img/maquinaria.png')">
+        <button class="service-face" aria-expanded="false">
+          <span class="service-title">Maquinaria y equipo</span>
+        </button>
+        <div class="service-info">
+          <span class="chip">Maquinaria y equipo</span>
+          <h3>Maquinaria y equipo</h3>
+          <p>Valoración por industria considerando depreciación física, tecnológica, funcional y económica, entre otros factores.</p>
+          <a class="btn btn-outline-light btn-small" href="#contacto">Solicitar cotización</a>
+        </div>
+      </article>
+
+      <!-- INMOBILIARIO -->
+      <article class="service-card" style="--bg-img: url('../Img/Inmobiliario_LosCabos.jpg')">
+        <button class="service-face" aria-expanded="false">
+          <span class="service-title">Inmobiliario</span>
+        </button>
+        <div class="service-info">
+          <span class="chip">Inmobiliario</span>
+          <h3>Propiedades y bienes raíces</h3>
+          <p>Informes claros e independientes con análisis de la propiedad y del mercado donde se ubica (residencial, industrial y comercial).</p>
+          <a class="btn btn-outline-light btn-small" href="#contacto">Solicitar cotización</a>
+        </div>
+      </article>
+
+      <!-- EMPRESAS / INTANGIBLES -->
+      <article class="service-card" style="--bg-img: url('../Img/Valuacion_Empresas.jpg')">
+        <button class="service-face" aria-expanded="false">
+          <span class="service-title">Empresas / Intangibles</span>
+        </button>
+        <div class="service-info">
+          <span class="chip">Empresas / Intangibles</span>
+          <h3>Valuación de empresas (tangibles e intangibles)</h3>
+          <p>Soporte integral para valorar negocios, acciones y activos intangibles con metodologías reconocidas.</p>
+          <a class="btn btn-outline-light btn-small" href="#contacto">Solicitar cotización</a>
+        </div>
+      </article>
+
+      <!-- ASESORÍA -->
+      <article class="service-card" style="--bg-img: url('../Img/Consultoria.jpg')">
+        <button class="service-face" aria-expanded="false">
+          <span class="service-title">Consultoría</span>
+        </button>
+        <div class="service-info">
+          <span class="chip">Asesoría</span>
+          <h3>Consultoría y dictámenes</h3>
+          <p>Definición de alcance, propósito y documentación (banca, fiscal, seguros, litigio, compra/venta).</p>
+          <a class="btn btn-outline-light btn-small" href="#contacto">Solicitar cotización</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
 
     <!-- ACERCA -->
     <section id="acerca" class="alt">
       <div class="container grid-2">
         <div>
           <h2>Acerca de Avalúos Finisterra</h2>
-          <p>Compromiso de brindar servicios confiables que respalden decisiones financieras con el mejor soporte técnico y en el menor tiempo posible. Metodologías y análisis avanzados para distintos tipos de valoración.</p>
+          <p>Nos comprometemos a ayudar a nuestros clientes a lograr sus objetivos ofreciendo servicios confiables que se utilizan para tomar decisiones financieras con el mejor respaldo en el menor tiempo posible. Entendemos la metodología y el análisis necesarios donde se requieren habilidades avanzadas para realizar todo tipo de valoraciones.</p>
           <ul class="bullets">
             <li>Experiencia local en Baja California Sur.</li>
             <li>Reportes claros y trazables.</li>
@@ -144,7 +209,8 @@
       </div>
     </section>
 
-    <!-- PROCESO -->
+   
+    <!-- PROCESO 
     <section id="proceso">
       <div class="container">
         <h2>Proceso de trabajo</h2>
@@ -162,8 +228,8 @@
           <a class="btn btn-outline" href="#servicios">Explorar servicios</a>
         </div>
       </div>
-    </section>
-
+    </section>  -->
+    
     <!-- CONTACTO -->
     <section id="contacto" class="alt-2">
       <div class="container grid-2">
@@ -174,7 +240,7 @@
             Correo: <strong>info@avaluosfinisterra.com</strong><br>
             Horario: <strong>9:00–14:00 y 17:00–19:00</strong>
           </p>
-          <p class="hint">Sin redes sociales y sin mapa.</p>
+         <!-- <p class="hint">Sin redes sociales y sin mapa.</p> --> 
         </div>
 
         <div class="card">

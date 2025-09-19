@@ -64,6 +64,7 @@ nav a.btn{display:inline-flex; align-items:center}
 .btn-outline-light:hover{background:#0F172A; color:var(--brand-1);}
 .btn-secondary{background:var(--brand-2); color: #000;; border:1px solid var(--brand-2)}
 .btn-secondary:hover{filter:brightness(1.07)}
+a.btn-outline-light:hover { background: #C2A46D;}
 
 /* ===== HERO con FONDO (FADE) ===== */
 .hero{position:relative; padding:5rem 0 3.2rem}
@@ -176,4 +177,99 @@ textarea{min-height:130px}
   .grid-2{grid-template-columns:1fr}
   .grid-3{grid-template-columns:1fr}
   .row{grid-template-columns:1fr}
+}
+
+/* ===== Grid de servicios con imagen y overlay ===== */
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.2rem;
+   
+}
+
+.service-card{
+  position:relative;
+  border-radius:var(--radius-xl);
+  overflow:hidden;
+  box-shadow:var(--shadow-1);
+  min-height:320px;
+  background:#0B2239;
+  isolation:isolate;
+  object-fit: fill;
+}
+
+/* Fondo con imagen (escala para rellenar) */
+.service-card::before{
+  content:"";
+  position:absolute; inset:0;
+  background-image:var(--bg-img);
+  background-size:cover;          /* llena como en tu referencia */
+  background-position:center;
+  background-repeat:no-repeat;
+  transform:scale(1.02);
+  transition:transform .6s ease;
+  z-index:-2;
+ 
+}
+
+/* Capa oscura suave para leer el título */
+.service-card::after{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(7,20,35,.35), rgba(7,20,35,.55));
+  z-index:-1;
+  
+}
+
+/* Cara visible por defecto: solo el título centrado */
+.service-face{
+  all:unset;
+  position:absolute; inset:0;
+  display:grid; place-items:center;
+  cursor:pointer;
+  
+}
+.service-title{
+  color:#fff;
+  font-size:clamp(1.4rem,2.1vw,2rem);
+  font-weight:700;
+  text-shadow:0 6px 18px rgba(0,0,0,.45);
+  padding:.35rem .9rem;
+  border-radius:999px;
+  background:rgba(0,0,0,.28);
+  backdrop-filter:blur(2px);
+}
+
+/* Panel de información (oculto) */
+.service-info{
+  position:absolute; inset:0;
+  display:flex; flex-direction:column; gap:.55rem;
+  padding:1.25rem 1.2rem;
+  color:#fff;
+  background:linear-gradient(180deg, rgba(7,20,35,.83), rgba(7,20,35,.92));
+  transform:translateY(8%);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .28s ease, transform .28s ease;
+}
+
+/* Títulos dentro de info */
+.service-info h3{margin:.15rem 0 .25rem; color:#fff}
+.service-info p{margin:0 0 .25rem; color:rgba(255,255,255,.92)}
+
+/* Hover/Foco/Estado abierto */
+.service-card:hover::before{ transform:scale(1.07); }
+.service-card:hover .service-info,
+.service-card:focus-within .service-info,
+.service-card.open .service-info{
+  opacity:1; transform:translateY(0); pointer-events:auto;
+}
+.service-card:hover .service-face,
+.service-card:focus-within .service-face,
+.service-card.open .service-face{ opacity:0; }
+
+/* Responsive */
+@media (max-width: 960px){
+  .service-grid{grid-template-columns:1fr; gap:1rem}
+  .service-card{min-height:260px}
 }

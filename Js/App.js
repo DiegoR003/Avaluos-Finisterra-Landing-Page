@@ -21,6 +21,46 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ===== Tarjetas de servicios: toggle en móvil/touch =====
+(() => {
+  const cards = Array.from(document.querySelectorAll('.service-card'));
+  if (!cards.length) return;
+
+  const isTouch = matchMedia('(hover: none), (pointer: coarse)').matches;
+
+  cards.forEach(card => {
+    const faceBtn = card.querySelector('.service-face');
+    if (!faceBtn) return;
+
+    // Teclado (accesible) y mouse
+    faceBtn.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.classList.toggle('open'); }
+    });
+
+    if (isTouch) {
+      faceBtn.addEventListener('click', e => {
+        e.preventDefault();
+        const willOpen = !card.classList.contains('open');
+        cards.forEach(c => c.classList.remove('open'));
+        if (willOpen) card.classList.add('open');
+        faceBtn.setAttribute('aria-expanded', String(willOpen));
+      });
+    }
+  });
+
+  // Cerrar si tocas fuera (móvil)
+  document.addEventListener('click', e => {
+    if (!isTouch) return;
+    const anyOpen = document.querySelector('.service-card.open');
+    if (anyOpen && !anyOpen.contains(e.target)) {
+      anyOpen.classList.remove('open');
+      const btn = anyOpen.querySelector('.service-face');
+      if (btn) btn.setAttribute('aria-expanded','false');
+    }
+  });
+})();
+
+
   // ===== Formularios (placeholder sin backend) =====
   ['leadForm','contactForm'].forEach(id=>{
     const form = document.getElementById(id);
