@@ -61,18 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 
-  // ===== Formularios (placeholder sin backend) =====
-  ['leadForm','contactForm'].forEach(id=>{
-    const form = document.getElementById(id);
-    if(!form) return;
-    const msg = form.querySelector('.form-msg');
-    form.addEventListener('submit', e=>{
-      e.preventDefault();
-      if(!form.checkValidity()){ form.reportValidity(); return; }
-      if(msg) msg.textContent = '¡Gracias! Hemos recibido tu solicitud.';
-      form.reset();
-    });
-  });
+
 
   // ===== Carrusel de FONDO (FADE) =====
   const slidesWrap = document.querySelector('.bg-slides');
@@ -174,4 +163,47 @@ document.addEventListener('DOMContentLoaded', () => {
   applyState(); // estado inicial
 });
 
+
+// ========== ENVIO DEL FORMULARIO AL CORREO ==========
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+
+  const btn = document.getElementById('sendBtn');
+  const msg = document.getElementById('formMsg');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg.textContent = '';
+    btn.disabled = true;
+    const originalText = btn.textContent;
+    btn.textContent = 'Enviando...';
+
+    try {
+      const formData = new FormData(form);
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.ok) {
+        throw new Error(data?.error || 'No se pudo enviar el mensaje.');
+      }
+
+      msg.textContent = '¡Gracias! Te contactaremos muy pronto.';
+      msg.style.color = '#0f766e';
+      form.reset();
+    } catch (err) {
+      console.error(err);
+      msg.textContent = 'Hubo un problema al enviar. Intenta de nuevo o escríbenos por WhatsApp.';
+      msg.style.color = '#b91c1c';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = originalText;
+    }
+  });
+});
 
