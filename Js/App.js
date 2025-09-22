@@ -6,20 +6,93 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===== Menú móvil (dropdown) =====
   const headerEl = document.querySelector('header.site');
   const navToggle = document.querySelector('.nav-toggle');
-  if (headerEl && navToggle) {
+   if (headerEl && navToggle) {
+    // 1. Seleccionamos todos los enlaces del menú DENTRO de este bloque.
+    const menuLinks = headerEl.querySelectorAll('nav a');
+    
+    // El resto de tu código de menú
     navToggle.setAttribute('aria-expanded', 'false');
     navToggle.addEventListener('click', () => {
       const isOpen = headerEl.classList.toggle('open');
       navToggle.setAttribute('aria-expanded', String(isOpen));
     });
+
     // cerrar si haces click fuera
-    document.addEventListener('click', (e)=>{
+    document.addEventListener('click', (e) => {
       if (!headerEl.contains(e.target) && headerEl.classList.contains('open')) {
         headerEl.classList.remove('open');
-        navToggle.setAttribute('aria-expanded','false');
+        navToggle.setAttribute('aria-expanded', 'false');
       }
     });
+
+    // 2. Ahora, este código funcionará porque `menuLinks` ya está definida.
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (headerEl.classList.contains('open')) {
+          headerEl.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
   }
+
+  document.addEventListener('DOMContentLoaded', () => {
+  // ====== MENÚ MÓVIL ======
+  const header = document.getElementById('siteNav');       // <header id="siteNav" class="site">
+  if (!header) return;
+
+  const toggleBtn = header.querySelector('.nav-toggle');   // botón ☰
+
+  const open  = () => { header.classList.add('open');  document.body.classList.add('menu-open'); };
+  const close = () => { header.classList.remove('open'); document.body.classList.remove('menu-open'); };
+
+  // Abrir/cerrar con el botón
+  if (toggleBtn) {
+    toggleBtn.setAttribute('aria-expanded', 'false');
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = header.classList.toggle('open');
+      document.body.classList.toggle('menu-open', isOpen);
+      toggleBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+  }
+
+  // Cerrar al hacer clic en cualquier enlace del menú
+  header.querySelectorAll('nav a').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href') || '';
+      close(); // SIEMPRE cerrar
+
+      // Scroll suave con offset si es ancla interna
+      if (href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          const offset = header.offsetHeight || 0;
+          const y = target.getBoundingClientRect().top + window.scrollY - offset - 6;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }
+    });
+  });
+
+  // Cerrar si tocas fuera del header
+  document.addEventListener('click', (e) => {
+    if (header.classList.contains('open') && !e.target.closest('#siteNav')) close();
+  });
+
+  // Cerrar con ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') close();
+  });
+
+  // Opcional: cerrar al iniciar scroll
+  window.addEventListener('scroll', () => {
+    if (header.classList.contains('open')) close();
+  }, { passive: true });
+});
+
+
 
   // ===== Tarjetas de servicios: toggle en móvil/touch =====
 (() => {
@@ -170,40 +243,44 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contactForm');
   if (!form) return;
 
-  const btn = document.getElementById('sendBtn');
-  const msg = document.getElementById('formMsg');
+  // Busca / crea el nodo de mensajes
+  let statusEl = form.querySelector('.form-msg');
+  if (!statusEl) {
+    statusEl = document.createElement('p');
+    statusEl.className = 'form-msg';
+    statusEl.setAttribute('aria-live', 'polite');
+    statusEl.style.marginTop = '.4rem';
+    form.appendChild(statusEl);
+  }
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    msg.textContent = '';
-    btn.disabled = true;
-    const originalText = btn.textContent;
-    btn.textContent = 'Enviando...';
+
+    statusEl.textContent = 'Enviando…';
+    const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
 
     try {
-      const formData = new FormData(form);
-      const res = await fetch(form.action, {
+      const action = form.getAttribute('action') || '/Api/Envio-Correo.php';
+      const res = await fetch(action, {
         method: 'POST',
-        body: formData
+        body: new FormData(form),
       });
 
-      const data = await res.json();
+      let data = {};
+      try { data = await res.json(); } catch { /* ignore */ }
 
-      if (!res.ok || !data.ok) {
-        throw new Error(data?.error || 'No se pudo enviar el mensaje.');
+      if (res.ok && data.ok) {
+        statusEl.textContent = '¡Gracias! Te contactaremos en breve.';
+        form.reset();
+      } else {
+        const msg = (data && data.error) || res.statusText || 'No se pudo enviar. Intenta de nuevo.';
+        statusEl.textContent = 'Error: ' + msg;
       }
-
-      msg.textContent = '¡Gracias! Te contactaremos muy pronto.';
-      msg.style.color = '#0f766e';
-      form.reset();
     } catch (err) {
-      console.error(err);
-      msg.textContent = 'Hubo un problema al enviar. Intenta de nuevo o escríbenos por WhatsApp.';
-      msg.style.color = '#b91c1c';
+      statusEl.textContent = 'Error de red: ' + (err?.message || err);
     } finally {
-      btn.disabled = false;
-      btn.textContent = originalText;
+      if (submitBtn) submitBtn.disabled = false;
     }
   });
 });
-

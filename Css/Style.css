@@ -248,6 +248,15 @@ a.btn-outline-light:hover {
   .hero .content{
     padding-top:.5rem;
   }
+
+  @media (max-width:960px){
+  nav ul{ display:none; }
+  header.site.open nav ul{ display:flex; }
+}
+body.menu-open{ overflow:hidden; } 
+
+
+
   .hero h1{
     font-size: clamp(1.6rem, 7.2vw, 2.2rem);
     line-height: 1.15;

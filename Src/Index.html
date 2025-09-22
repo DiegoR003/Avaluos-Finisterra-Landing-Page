@@ -73,7 +73,7 @@
         </div>
       </div>
 
-      Controles del carrusel de fondo 
+      <!-- Controles del carrusel --> 
       <div class="bg-controls">
         <button class="bg-prev" aria-label="Anterior">‹</button>
         <div class="bg-dots" role="tablist" aria-label="Selector de diapositivas"></div>
@@ -240,9 +240,9 @@
       <h2 class="contact-title">Contacto</h2>
 
       <ul class="contact-list">
-        <li><span>Tel / WhatsApp:</span> <a href="https://wa.me/526242259793" target="_blank" rel="noopener">624 225 97 93</a></li>
+        <li><span>Tel / WhatsApp:</span> <a href="https://wa.me/526242259793" target="_blank" rel="noopener">624 225 97 93 /  624 155 57 62</a></li>
         <li><span>Correo:</span> <a href="mailto:info@avaluosfinisterra.com">info@avaluosfinisterra.com</a></li>
-        <li><span>Horario:</span> 9:00–14:00 y 17:00–19:00</li>
+        <li><span>Horario:</span> LUNES A VIERNES de 9:00am–14:00pm y 17:00pm–19:00pm</li>
       </ul>
 
       <div class="cta-row">
@@ -258,20 +258,26 @@
     </div>
 
     <!-- Columna derecha -->
-    <div class="contact-card card">
-      <form id="contactForm" novalidate>
-        <div class="row">
-          <label>Nombre*<input name="nombre" required></label>
-          <label>Teléfono / WhatsApp*<input name="telefono" required></label>
-        </div>
-        <label>Mensaje
-          <textarea name="mensaje" placeholder="Cuéntanos qué necesitas valuar"></textarea>
-        </label>
-        <button class="btn btn-send" id="sendBtn" type="submit">Enviar</button>
-        <p class="form-msg" role="status" aria-live="polite"></p>
-      </form>
+<div class="contact-card card">
+  <form id="contactForm" action="/Api/Envio-Correo.php" method="post" novalidate>
+    <div class="row">
+      <label>Nombre*<input name="nombre" required></label>
+      <label>Teléfono / WhatsApp*<input name="telefono" required></label>
     </div>
-  </div>
+
+    <!-- Honeypot anti-bot (oculto) -->
+    <input type="text" name="website" autocomplete="off" tabindex="-1"
+           style="position:absolute;left:-9999px;opacity:0">
+
+    <label>Mensaje
+      <textarea name="mensaje" placeholder="Cuéntanos qué necesitas valuar"></textarea>
+    </label>
+
+    <button class="btn btn-send" id="sendBtn" type="submit">Enviar</button>
+    <p class="form-msg" role="status" aria-live="polite"></p>
+  </form>
+</div>
+
 </section>
 
 <!-- FOOTER — limpio y elegante -->
