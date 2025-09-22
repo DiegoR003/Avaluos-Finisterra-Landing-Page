@@ -284,3 +284,46 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('contactForm');
+  
+  if (form) {
+    form.addEventListener('submit', (event) => {
+      // 1. Obtener los campos obligatorios
+      const nombre = form.querySelector('[name="nombre"]');
+      const telefono = form.querySelector('[name="telefono"]');
+      const mensaje = form.querySelector('[name="mensaje"]');
+      
+      let hayError = false;
+
+      // 2. Validar cada campo
+      if (nombre.value.trim() === '') {
+        nombre.classList.add('error'); // Añade una clase CSS para resaltar el error
+        hayError = true;
+      } else {
+        nombre.classList.remove('error');
+      }
+
+      if (telefono.value.trim() === '') {
+        telefono.classList.add('error');
+        hayError = true;
+      } else {
+        telefono.classList.remove('error');
+      }
+
+      if (mensaje.value.trim() === '') {
+        mensaje.classList.add('error');
+        hayError = true;
+      } else {
+        mensaje.classList.remove('error');
+      }
+
+      // 3. Si hay algún campo vacío, detener el envío
+      if (hayError) {
+        event.preventDefault(); // Detiene el envío del formulario
+        alert('Por favor, rellena todos los campos obligatorios.'); // O muestra el mensaje en tu `form-msg`
+      }
+    });
+  }
+});
