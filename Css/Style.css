@@ -13,9 +13,7 @@
   --radius-xl:1.25rem;
   --radius-lg:.875rem;
 
-  /* Ajuste del fondo del hero:
-     'contain' => NO recorta (verás bandas si la proporción no coincide).
-     Cambia a 'cover' si quieres que llene recortando. */
+  /* Ajuste del fondo del hero */
   --bg-fit: cover;
 }
 
@@ -61,7 +59,7 @@ header.site {
 
 /* Más sólido / con sombra al hacer scroll */
 header.site.nav-solid {
-  background: rgba(11,34,57,1);  /* sigue sólido, pero puedes darle un leve efecto */
+  background: rgba(11,34,57,1);  /* sigue sólido, pero se le puede dar un leve efecto */
   box-shadow: 0 6px 24px rgba(0,0,0,.12);
 }
 
